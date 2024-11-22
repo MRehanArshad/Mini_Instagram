@@ -3,6 +3,7 @@ using namespace std;
 
 Post::Post(string post) {
 	this->postDetail = post;
+	this->next = nullptr;
 }
 
 PostStack::PostStack() {
