@@ -1,6 +1,7 @@
 #pragma once
 #include"SignUp.h"
 #include"Login.h"
+
 class User {
 public:
 	std::string username;
