@@ -37,6 +37,52 @@ void MainMenu() {
 	cout << "\n\t\t\t3. Exit" << endl;
 	cout << "\n\n\n\t\t ================================================" << endl;
 }
+
+void PostsMenu()
+{
+	cout << "\n\n\t\t\t\t     Posts Page ";
+	cout << "\n\t\t ================================================" << endl;
+	cout << "\n\n\n\t\t\t1. Add a Post" << endl;
+	cout << "\n\t\t\t2. Delete Post" << endl;
+	cout << "\n\t\t\t3. Display Posts" << endl;
+	cout << "\n\n\n\t\t ================================================" << endl;
+}
+
+void MessagesMenu()
+{
+	cout << "\n\n\t\t\t\t     Message Page ";
+	cout << "\n\t\t ================================================" << endl;
+	cout << "\n\n\n\t\t\t1. Add a Message" << endl;
+	cout << "\n\t\t\t2. View Message" << endl;
+	cout << "\n\n\n\t\t ================================================" << endl;
+}
+
+void FriendsMenu()
+{
+	cout << "\n\n\t\t\t\t     Friends Page ";
+	cout << "\n\t\t ================================================" << endl;
+	cout << "\n\n\n\t\t\t1. Add a Friend" << endl;
+	cout << "\n\t\t\t2. View Friends" << endl;
+	cout << "\n\t\t\t2. Block Friends" << endl;
+	cout << "\n\t\t\t3. Delete Friends" << endl;
+	cout << "\n\t\t\t4. UnBlock Friends" << endl;
+	cout << "\n\n\n\t\t ================================================" << endl;
+}
+
+void UserProfile()
+{
+	system("cls");
+	cout << "\n\n\t\t\t\t     Home Page ";
+	cout << "\n\t\t ================================================" << endl;
+	cout << "\n\n\n\t\t\t1. Posts" << endl;
+	cout << "\n\t\t\t2. Messages" << endl;
+	cout << "\n\t\t\t3. Friends" << endl;
+	cout << "\n\t\t\t4. View Notifications" << endl;
+	cout << "\n\t\t\t5. Log Out" << endl;
+	cout << "\n\n\n\t\t ================================================" << endl;
+
+}
+
 int main() {
 	// Variables
 	Login login;
