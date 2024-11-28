@@ -22,4 +22,5 @@ public:
 	AllUsers();
 	void Insert(SignUp signup);
 	void DeleteUser(std::string username);
+	void display();
 };

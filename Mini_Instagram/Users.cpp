@@ -1,4 +1,5 @@
 #include"Users.h"
+#include<iostream>
 
 // Contructor For User Class
 User::User() {
@@ -99,10 +100,10 @@ User* AllUsers::InsertUser(User* root, SignUp signup) {
 	int bf = getHeight(root->left) - getHeight(root->right);
 
 	if (bf > 1 && signup.getUsername() < root->left->username) {
-		root = rotateLeft(root);
+		root = rotateRight(root);
 	}
 	else if (bf < -1 && signup.getUsername() > root->right->username) {
-		root = rotateRight(root);
+		root = rotateLeft(root);
 	}
 	else if (bf > 1 && signup.getUsername() > root->left->username) {
 		root->left = rotateLeft(root->left);
@@ -189,4 +190,15 @@ void AllUsers::DeleteUser(std::string username)
 	if(!root)
 		return;
 	deleteNode(root, username);
+}
+
+void preOrder(User* root) {
+	if (root == nullptr) return;
+	preOrder(root->left);
+	std::cout << root->username << std::endl;
+	preOrder(root->right);
+}
+
+void AllUsers::display() {
+	preOrder(root);
 }
