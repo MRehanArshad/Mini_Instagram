@@ -52,12 +52,16 @@ string SignUp::getCountry() {
 
 // For Taking Details of Users
 void SignUp::SignUpPage() {
-	cout << "Enter the Username : ";
+	system("cls");
+	cout << "\n\n\t\t\t\t     SignUp Page ";
+	cout << "\n\t\t ================================================" << endl;
+	cout << "\n\n\n\t\t\tEnter the Username : ";
 	getline(cin, Username);
-	cout << "Enter the Password : ";
+	cout << "\n\t\t\tEnter the Password : ";
 	getline(cin, Password);
-	cout << "Enter the Date of Birth : ";
+	cout << "\n\t\t\tEnter the Date of Birth : ";
 	getline(cin, DateOfBirth);
-	cout << "Enter the Country : ";
+	cout << "\n\t\t\tEnter the Country : ";
 	getline(cin, Country);
+	cout << "\n\n\n\t\t ================================================" << endl;
 }

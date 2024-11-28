@@ -1,4 +1,5 @@
 #include<iostream>
+#include<Windows.h>
 #include"Login.h"
 using namespace std;
 
@@ -30,9 +31,12 @@ string Login::getPassword() {
 
 // For Taking Input from User the Login Details
 void Login::LoginDetails() {
-	cin.ignore();
-	cout << "Enter the Username : ";
+	system("cls");
+	cout << "\n\n\t\t\t\t     Login Page ";
+	cout << "\n\t\t ================================================" << endl;
+	cout << "\n\n\n\t\t\tEnter the Username : ";
 	getline(cin, username);
-	cout << "Enter the Password : ";
+	cout << "\n\t\t\tEnter the Password : ";
 	getline(cin, password);
+	cout << "\n\n\n\t\t ================================================" << endl;
 }
