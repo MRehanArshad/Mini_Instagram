@@ -12,6 +12,27 @@ User::User() {
 	right = nullptr;
 	height = 1;
 }
+
+bool User::AddFriend(std::string name) {
+	Friend_List.addFriend(name, "Friend");
+	return 1;
+}
+
+bool User::deleteFriend(std::string name)
+{
+	return Friend_List.deleteFriend(name);
+}
+
+bool User::unblockFriend(std::string key)
+{
+	return Friend_List.updateFriend(key, key, "Friend");
+}
+
+bool User::blockFriend(std::string key)
+{
+	return Friend_List.updateFriend(key, key, "Blocked");
+}
+
 User::User(SignUp signup) {
 	username = signup.getUsername();
 	password = signup.getPassword();

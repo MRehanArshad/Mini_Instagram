@@ -1,7 +1,5 @@
 #pragma once
 #include"SignUp.h"
-#include"Login.h"
-
 class User {
 public:
 	std::string username;
@@ -11,8 +9,13 @@ public:
 	User* left;
 	User* right;
 	int height;
+	Friend Friend_List;
 	User();
 	User(SignUp signup);
+	bool AddFriend(std::string name);
+	bool deleteFriend(std::string name);
+	bool unblockFriend(std::string key);
+	bool blockFriend(std::string key);
 };
 
 class AllUsers {
@@ -26,4 +29,5 @@ public:
 	void DeleteUser(std::string username);
 	bool ValidatePassword(Login login);
 	void display();
+
 };
