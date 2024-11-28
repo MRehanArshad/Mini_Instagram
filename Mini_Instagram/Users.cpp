@@ -117,80 +117,82 @@ User* AllUsers::InsertUser(User* root, SignUp signup) {
 	return root;
 }
 
-User* deleteNode(User* node, std::string name)
-{
-	if(!node)
-		return node;
+User* deleteNode(User* node, std::string name) {
+	if (!node)
+		return nullptr;
 
-	if (node->username > name)
-		node->right = deleteNode(node->right, name);
-	if(node->username < name)
+	// Recursive case for traversing the tree
+	if (name < node->username) {
 		node->left = deleteNode(node->left, name);
-
-	else if(node->username == name)
-	{
-		//No Child
-		if(!node->left && !node->right)
-		{
-			delete node;
-			node = NULL;
-		}
-		//1 Child
-		if(!node->left && node->right)
-		{
-			User* temp = node;
-			node = node->right;
-			delete temp;
-		}
-		else if(node->left && !node->right)
-		{
-			User* temp = node;
-			node = node->left;
-			delete temp;
-		}
-		//2 Child
-		if(node->left && node->right)
-		{
-			User* temp = getMin(node->right);
-			copyNode(node, temp);
-			deleteNode(node->right, temp->username);
-			delete temp;
-		}
-
-		int BF = getHeight(node->left) - getHeight(node->right);
-
-		if(BF > 1)
-		{
-			int balanceFactor = getHeight(node->left->left) - getHeight(node->left->right);
-			if (balanceFactor > 1)
-				node = rotateRight(node);
-			else if(balanceFactor < -1)
-			{
-				node->left = rotateLeft(node->left);
-				node = rotateRight(node);
-			}
-		}
-		else if(BF < -1)
-		{
-			int balanceFactor = getHeight(node->right->left) - getHeight(node->right->right);
-			if (balanceFactor > 1)
-				node = rotateLeft(node);
-			else if (balanceFactor < -1)
-			{
-				node->right = rotateRight(node->right);
-				node = rotateLeft(node);
-			}
-		}
 	}
+	else if (name > node->username) {
+		node->right = deleteNode(node->right, name);
+	}
+	else {
+		// Node to be deleted found
+
+		// Case 1: No child
+		if (!node->left && !node->right) {
+			delete node;
+			return nullptr;
+		}
+
+		// Case 2: One child
+		if (!node->left) {
+			User* temp = node->right;
+			delete node;
+			return temp;
+		}
+		if (!node->right) {
+			User* temp = node->left;
+			delete node;
+			return temp;
+		}
+
+		// Case 3: Two children
+		User* temp = getMin(node->right); // Find the minimum node in the right subtree
+		copyNode(node, temp);             // Copy the content of the successor
+		node->right = deleteNode(node->right, temp->username);
+	}
+
+	// Update the height of the current node
+	node->height = max(getHeight(node->left), getHeight(node->right)) + 1;
+
+	// Balance the node if it becomes unbalanced
+	int bf = getHeight(node->left) - getHeight(node->right);
+
+	// Left-Left case
+	if (bf > 1 && getHeight(node->left->left) >= getHeight(node->left->right)) {
+		return rotateRight(node);
+	}
+
+	// Left-Right case
+	if (bf > 1 && getHeight(node->left->left) < getHeight(node->left->right)) {
+		node->left = rotateLeft(node->left);
+		return rotateRight(node);
+	}
+
+	// Right-Right case
+	if (bf < -1 && getHeight(node->right->right) >= getHeight(node->right->left)) {
+		return rotateLeft(node);
+	}
+
+	// Right-Left case
+	if (bf < -1 && getHeight(node->right->right) < getHeight(node->right->left)) {
+		node->right = rotateRight(node->right);
+		return rotateLeft(node);
+	}
+
+	return node;
 }
 
-//Deletion from Users AVL
-void AllUsers::DeleteUser(std::string username)
-{
-	if(!root)
+// Deletion from Users AVL
+void AllUsers::DeleteUser(std::string username) {
+	if (!root)
 		return;
-	deleteNode(root, username);
+	root = deleteNode(root, username); // Update the root of the tree
 }
+
 
 void preOrder(User* root) {
 	if (root == nullptr) return;
