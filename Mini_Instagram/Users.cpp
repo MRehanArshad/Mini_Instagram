@@ -244,13 +244,13 @@ bool SearchUser(User* root, std::string name, User*& target) {
 bool AllUsers::ValidatePassword(Login login) {
 	User* target = nullptr;
 	if (!SearchUser(root, login.getUsername(), target)) {
-		std::cout<<"This User does not Exsist in the database."<<std::endl;
+		std::cout<<"\n\t\t\tThis User does not Exsist in the database."<<std::endl;
 		return false;
 	}
 	if (target->password != login.getPassword()) {
-		std::cout << "Password didn't match" << std::endl;
+		std::cout << "\n\t\t\tPassword didn't match" << std::endl;
 		return false;
 	}
-	std::cout << "You have Successfully Login!!" << std::endl;
+	std::cout << "\n\t\t\tYou have Successfully Login!!" << std::endl;
 	return true;
 }

@@ -47,7 +47,8 @@ int main() {
 
 	intro();
 	Sleep(2000);
-	while (1) {
+	bool isLogin = false;
+	while (!isLogin) {
 		MainMenu();
 		cout << "\n\t\t\tEnter a choice : ";
 		cin >> choice;
@@ -55,8 +56,8 @@ int main() {
 
 		if (choice == 1) {
 			login.LoginDetails();
-			alluser.ValidatePassword(login);
-			Sleep(1000);
+			isLogin = alluser.ValidatePassword(login);
+			Sleep(2000);
 		}
 		else if (choice == 2) {
 			signup.SignUpPage();
