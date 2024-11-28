@@ -69,9 +69,10 @@ void FriendsMenu()
 	cout << "\n\n\n\t\t ================================================" << endl;
 }
 
-void UserProfile()
+void UserProfile(Login login)
 {
 	system("cls");
+	cout << "\t\t\t    Username : " << login.getUsername()<<endl;
 	cout << "\n\n\t\t\t\t     Home Page ";
 	cout << "\n\t\t ================================================" << endl;
 	cout << "\n\n\n\t\t\t1. Posts" << endl;
@@ -113,6 +114,20 @@ int main() {
 			exit(0);
 		}
 	}
-	
+	UserProfile(login);
+	cout << "\n\t\t\tEnter a choice : ";
+	cin >> choice;
+	if (choice == 1) {
+		PostsMenu();
+	}
+	else if (choice == 2) {
+		MessagesMenu();
+	}
+	else if (choice == 3) {
+		FriendsMenu();
+	}
+	else if (choice == 4) {
+
+	}
 	system("pause");
 }

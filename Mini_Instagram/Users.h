@@ -2,6 +2,7 @@
 #include"SignUp.h"
 #include"Login.h"
 #include"Friend.h"
+#include"Notification.h"
 
 class User {
 public:
@@ -13,6 +14,7 @@ public:
 	User* right;
 	int height;
 	Friend Friend_List;
+	Notification notification;
 	User();
 	User(SignUp signup);
 	bool AddFriend(std::string name);
