@@ -8,7 +8,6 @@ public:
 	std::string status;
 	Friend_Node* next;
 	Friend_Node(std::string n, std::string s);
-
 };
 
 class Friend

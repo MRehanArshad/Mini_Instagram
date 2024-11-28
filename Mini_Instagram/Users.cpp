@@ -19,19 +19,21 @@ bool User::AddFriend(std::string name) {
 	return 1;
 }
 
-bool User::deleteFriend(std::string name)
-{
+bool User::deleteFriend(std::string name) {
 	return Friend_List.deleteFriend(name);
 }
 
-bool User::unblockFriend(std::string key)
-{
+bool User::unblockFriend(std::string key) {
 	return Friend_List.updateFriend(key, key, "Friend");
 }
 
-bool User::blockFriend(std::string key)
-{
+bool User::blockFriend(std::string key) {
 	return Friend_List.updateFriend(key, key, "Blocked");
+}
+
+bool User::viewMessages() {
+	msgStk.display();
+	return true;
 }
 
 User::User(SignUp signup) {
@@ -60,6 +62,12 @@ void AllUsers::Insert(SignUp signup) {
 int getHeight(User* root) {
 	if (root == nullptr) return 0;
 	return root->height;
+}
+
+//Display all friends of the user
+void User::displayFriends() {
+	this->Friend_List.displayFriends();
+	return;
 }
 
 User* getMin(User* root) {
@@ -216,7 +224,6 @@ void AllUsers::DeleteUser(std::string username) {
 	root = deleteNode(root, username); // Update the root of the tree
 }
 
-
 void preOrder(User* root) {
 	if (root == nullptr) return;
 	preOrder(root->left);
@@ -315,4 +322,16 @@ void AllUsers::displayPost(Login login) {
 		target->notification.Dequeue();
 	}
 	std::cout << "\n\n\t\t ================================================" << std::endl;
+}
+}
+}
+
+bool AllUsers::addMsg(std::string name, std::string msg) {
+	User* temp = new User();
+	temp->username = name;
+	if (SearchUser(root, name, temp)) {
+		temp->msgStk.push(name, msg);
+		return 1;
+	}
+	return 0;
 }

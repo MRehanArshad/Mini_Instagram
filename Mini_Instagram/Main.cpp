@@ -28,6 +28,18 @@ void intro()
 
 }
 
+template<typename T>
+void input(T& val) {
+	cin >> val;
+	while (cin.fail())
+	{
+		cin.clear();
+		cin.ignore(1000, '\n');
+		cout << "Wrong input!\n" << "Enter Again: ";
+		cin >> val;
+	}
+}
+
 void MainMenu() {
 	system("cls");
 	cout << "\n\n\t\t\t\t     Page 1 ";
@@ -84,7 +96,6 @@ void UserProfile(Login login)
 	cout << "\n\t\t\t4. View Notifications" << endl;
 	cout << "\n\t\t\t5. Log Out" << endl;
 	cout << "\n\n\n\t\t ================================================" << endl;
-
 }
 
 int main() {

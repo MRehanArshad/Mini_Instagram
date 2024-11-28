@@ -4,6 +4,7 @@
 #include"Friend.h"
 #include"Notification.h"
 #include"Posts.h"
+#include"Messages.h"
 
 class User {
 public:
@@ -16,13 +17,15 @@ public:
 	int height;
 	Friend Friend_List;
 	Notification notification;
-	PostStack posts;
 	User();
 	User(SignUp signup);
 	bool AddFriend(std::string name);
 	bool deleteFriend(std::string name);
 	bool unblockFriend(std::string key);
 	bool blockFriend(std::string key);
+	bool viewMessages();
+	bool addMsg(std::string name, std::string msg);
+	void displayFriends();
 };
 
 class AllUsers {
@@ -36,9 +39,5 @@ public:
 	void DeleteUser(std::string username);
 	bool ValidatePassword(Login login);
 	void viewNotification(Login login);
-	void addPost(Login login, std::string str);
-	void deletePost(Login login, std::string str);
-	void displayPost(Login login);
 	void display();
-
 };
