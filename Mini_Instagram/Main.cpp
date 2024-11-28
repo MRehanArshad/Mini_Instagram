@@ -67,6 +67,6 @@ int main() {
 			exit(0);
 		}
 	}
-
+	
 	system("pause");
 }
