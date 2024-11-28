@@ -137,6 +137,8 @@
     <ClInclude Include="Users.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Friend.cpp" />
+    <ClCompile Include="Friend.h" />
     <ClCompile Include="FriendRequest.cpp" />
     <ClCompile Include="Login.cpp" />
     <ClCompile Include="Main.cpp" />
