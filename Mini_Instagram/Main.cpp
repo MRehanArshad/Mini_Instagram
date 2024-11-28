@@ -7,6 +7,7 @@
 #include"FriendRequest.h"
 #include"UserProfile.h"
 #include"Users.h"
+#include<Windows.h>
 using namespace std;
 
 void intro()
@@ -23,7 +24,6 @@ void intro()
 		<< "                                                 /$$  \\ $$                                 \n"
 		<< "                                                |  $$$$$$/                                 \n"
 		<< "                                                 \\______/                                  \n";
-
 }
 
 int main() {
