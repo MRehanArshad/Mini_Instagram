@@ -93,7 +93,7 @@ int main() {
 	SignUp signup;
 	AllUsers alluser;
 	int choice;
-
+	string str;
 
 	intro();
 	Sleep(2000);
@@ -123,10 +123,27 @@ int main() {
 			UserProfile(login);
 			cout << "\n\t\t\tEnter a choice : ";
 			cin >> choice;
+			cin.ignore();
 			if (choice == 1) {
 				PostsMenu();
-				cout << "\n\n\t\t\tPress any key continue...." << endl;
-				char ch = _getch();
+				cout << "\n\t\t\tEnter a choice : ";
+				cin >> choice;
+				cin.ignore();
+				if (choice == 1) {
+					cout << "\n\n\t\t\tEnter a Post : ";
+					getline(cin, str);
+					alluser.addPost(login, str);
+				}
+				else if (choice == 2) {
+					cout << "\n\n\t\t\tEnter a Post to Delete : ";
+					getline(cin, str);
+					alluser.addPost(login, str);
+				}
+				else if (choice == 3) {
+					alluser.displayPost(login);
+					cout << "\n\n\t\t\tPress any key continue...." << endl;
+					char ch = _getch();
+				}
 			}
 			else if (choice == 2) {
 				MessagesMenu();

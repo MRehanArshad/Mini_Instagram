@@ -1,6 +1,7 @@
 #include"Users.h"
 #include<iostream>
 #include<string>
+#include"Posts.h"
 
 // Contructor For User Class
 User::User() {
@@ -270,6 +271,47 @@ void AllUsers::viewNotification(Login login) {
 	while (!target->notification.empty()) {
 		std::string msg = target->notification.Front();
 		std::cout << "\n\t\t\tNotification " << i << " : " << msg << " ";
+		target->notification.Dequeue();
+	}
+	std::cout << "\n\n\t\t ================================================" << std::endl;
+}
+
+void AllUsers::addPost(Login login, std::string str) {
+	User* target = nullptr;
+	SearchUser(root, login.getUsername(), target);
+	target->posts.push(str);
+}
+
+void deleteFromStack(PostStack& posts, std::string str) {
+	if (posts.empty() || posts.top() == str) {
+		return;
+	}
+	std::string top = posts.top();
+	posts.pop();
+	deleteFromStack(posts, str);
+	posts.push(top);
+}
+
+void AllUsers::deletePost(Login login, std::string str) {
+	User* target = nullptr;
+	SearchUser(root, login.getUsername(), target);
+	deleteFromStack(target->posts, str);
+} 
+void AllUsers::displayPost(Login login) {
+	User* target = nullptr;
+	SearchUser(root, login.getUsername(), target);
+	int i = 1;
+	system("cls");
+	std::cout << "\n\n\t\t\t\t     Posts ";
+	std::cout << "\n\t\t ================================================" << std::endl;
+	if (target->notification.empty()) {
+		std::cout << "\n\t\t\tThere is no Posts" << std::endl;
+		std::cout << "\n\n\t\t ================================================" << std::endl;
+		return;
+	}
+	while (!target->notification.empty()) {
+		std::string msg = target->notification.Front();
+		std::cout << "\n\t\t\tPost " << i << " : " << msg << " ";
 		target->notification.Dequeue();
 	}
 	std::cout << "\n\n\t\t ================================================" << std::endl;

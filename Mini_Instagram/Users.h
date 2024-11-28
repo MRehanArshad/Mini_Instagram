@@ -3,6 +3,7 @@
 #include"Login.h"
 #include"Friend.h"
 #include"Notification.h"
+#include"Posts.h"
 
 class User {
 public:
@@ -15,6 +16,7 @@ public:
 	int height;
 	Friend Friend_List;
 	Notification notification;
+	PostStack posts;
 	User();
 	User(SignUp signup);
 	bool AddFriend(std::string name);
@@ -34,6 +36,9 @@ public:
 	void DeleteUser(std::string username);
 	bool ValidatePassword(Login login);
 	void viewNotification(Login login);
+	void addPost(Login login, std::string str);
+	void deletePost(Login login, std::string str);
+	void displayPost(Login login);
 	void display();
 
 };
