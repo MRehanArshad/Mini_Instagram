@@ -38,6 +38,7 @@ public:
 	void Insert(SignUp signup);
 	void DeleteUser(std::string username);
 	bool ValidatePassword(Login login);
+	void viewNotification(Login login);
 	bool addMsg(std::string name, std::string msg);
 	void display();
 };

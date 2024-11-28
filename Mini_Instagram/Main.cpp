@@ -8,7 +8,7 @@
 #include"FriendRequest.h"
 #include"UserProfile.h"
 #include"Users.h"
-#include<Windows.h>
+#include<conio.h>
 using namespace std;
 
 void intro()
@@ -52,6 +52,7 @@ void MainMenu() {
 
 void PostsMenu()
 {
+	system("cls");
 	cout << "\n\n\t\t\t\t     Posts Page ";
 	cout << "\n\t\t ================================================" << endl;
 	cout << "\n\n\n\t\t\t1. Add a Post" << endl;
@@ -62,6 +63,7 @@ void PostsMenu()
 
 void MessagesMenu()
 {
+	system("cls");
 	cout << "\n\n\t\t\t\t     Message Page ";
 	cout << "\n\t\t ================================================" << endl;
 	cout << "\n\n\n\t\t\t1. Add a Message" << endl;
@@ -71,6 +73,7 @@ void MessagesMenu()
 
 void FriendsMenu()
 {
+	system("cls");
 	cout << "\n\n\t\t\t\t     Friends Page ";
 	cout << "\n\t\t ================================================" << endl;
 	cout << "\n\n\n\t\t\t1. Add a Friend" << endl;
@@ -84,7 +87,7 @@ void FriendsMenu()
 void UserProfile(Login login)
 {
 	system("cls");
-	cout << "\t\t\t    Username : " << login.getUsername()<<endl;
+	cout << "\t\t\t    Username : " << login.getUsername() << endl;
 	cout << "\n\n\t\t\t\t     Home Page ";
 	cout << "\n\t\t ================================================" << endl;
 	cout << "\n\n\n\t\t\t1. Posts" << endl;
@@ -101,44 +104,62 @@ int main() {
 	SignUp signup;
 	AllUsers alluser;
 	int choice;
-	
+
 
 	intro();
 	Sleep(2000);
-	bool isLogin = false;
-	while (!isLogin) {
-		MainMenu();
-		cout << "\n\t\t\tEnter a choice : ";
-		cin >> choice;
-		cin.ignore();
+	while (1) {
+		bool isLogin = false;
+		while (!isLogin) {
+			MainMenu();
+			cout << "\n\t\t\tEnter a choice : ";
+			cin >> choice;
+			cin.ignore();
 
-		if (choice == 1) {
-			login.LoginDetails();
-			isLogin = alluser.ValidatePassword(login);
-			Sleep(2000);
+			if (choice == 1) {
+				login.LoginDetails();
+				isLogin = alluser.ValidatePassword(login);
+				Sleep(2000);
+			}
+			else if (choice == 2) {
+				signup.SignUpPage();
+				alluser.Insert(signup);
+			}
+			else if (choice == 3) {
+				exit(0);
+			}
 		}
-		else if (choice == 2) {
-			signup.SignUpPage();
-			alluser.Insert(signup);
+		bool logout = false;
+		while (!logout) {
+			UserProfile(login);
+			cout << "\n\t\t\tEnter a choice : ";
+			cin >> choice;
+			if (choice == 1) {
+				PostsMenu();
+				cout << "\n\n\t\t\tPress any key continue...." << endl;
+				char ch = _getch();
+			}
+			else if (choice == 2) {
+				MessagesMenu();
+				cout << "\n\n\t\t\tPress any key continue...." << endl;
+				char ch = _getch();
+			}
+			else if (choice == 3) {
+				FriendsMenu();
+				cout << "\n\n\t\t\tPress any key continue...." << endl;
+				char ch = _getch();
+			}
+			else if (choice == 4) {
+				alluser.viewNotification(login);
+				cout << "\n\n\t\t\tPress any key continue...." << endl;
+				char ch = _getch();
+			}
+			else if (choice == 5) {
+				cout << "\n\n\t\t\tLogout Successfully........" << endl;
+				Sleep(2000);
+				logout = true;
+			}
 		}
-		else if (choice == 3) {
-			exit(0);
-		}
-	}
-	UserProfile(login);
-	cout << "\n\t\t\tEnter a choice : ";
-	cin >> choice;
-	if (choice == 1) {
-		PostsMenu();
-	}
-	else if (choice == 2) {
-		MessagesMenu();
-	}
-	else if (choice == 3) {
-		FriendsMenu();
-	}
-	else if (choice == 4) {
-
 	}
 	system("pause");
 }

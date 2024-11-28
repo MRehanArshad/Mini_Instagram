@@ -80,7 +80,7 @@ int max(int a, int b) {
 	return (a > b ? a : b);
 }
 
-void copyNode(User* &u1, User* &u2){
+void copyNode(User*& u1, User*& u2) {
 	u1->country = u2->country;
 	u1->date_Of_Birth = u2->date_Of_Birth;
 	u1->password = u2->password;
@@ -251,7 +251,7 @@ bool SearchUser(User* root, std::string name, User*& target) {
 bool AllUsers::ValidatePassword(Login login) {
 	User* target = nullptr;
 	if (!SearchUser(root, login.getUsername(), target)) {
-		std::cout<<"\n\t\t\tThis User does not Exsist in the database."<<std::endl;
+		std::cout << "\n\t\t\tThis User does not Exsist in the database." << std::endl;
 		return false;
 	}
 	if (target->password != login.getPassword()) {
@@ -260,6 +260,27 @@ bool AllUsers::ValidatePassword(Login login) {
 	}
 	std::cout << "\n\t\t\tYou have Successfully Login!!" << std::endl;
 	return true;
+}
+
+void AllUsers::viewNotification(Login login) {
+	User* target = nullptr;
+	SearchUser(root, login.getUsername(), target);
+	int i = 1;
+	system("cls");
+	std::cout << "\n\n\t\t\t\t     Notifications ";
+	std::cout << "\n\t\t ================================================" << std::endl;
+	if (target->notification.empty()) {
+		std::cout << "\n\t\t\tThere is no Notifications" << std::endl;
+		std::cout << "\n\n\t\t ================================================" << std::endl;
+		return;
+	}
+	while (!target->notification.empty()) {
+		std::string msg = target->notification.Front();
+		std::cout << "\n\t\t\tNotification " << i << " : " << msg << " ";
+		target->notification.Dequeue();
+	}
+	std::cout << "\n\n\t\t ================================================" << std::endl;
+}
 }
 
 bool AllUsers::addMsg(std::string name, std::string msg) {
