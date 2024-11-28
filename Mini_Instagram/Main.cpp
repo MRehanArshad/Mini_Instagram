@@ -29,8 +29,9 @@ void intro()
 
 int main() {
 	Login login;
+	SignUp signup;
 	intro();
 	Sleep(2000);
-	login.LoginDetails();
+	signup.SignUpPage();
 	system("pause");
 }
