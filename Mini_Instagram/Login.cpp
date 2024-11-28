@@ -1,6 +1,7 @@
 #include<iostream>
 #include<Windows.h>
 #include"Login.h"
+#include"Users.h"
 using namespace std;
 
 // Default Constructor

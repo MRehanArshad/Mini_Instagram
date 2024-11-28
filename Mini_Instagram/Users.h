@@ -1,5 +1,6 @@
 #pragma once
 #include"SignUp.h"
+#include"Login.h"
 class User {
 public:
 	std::string username;
@@ -22,5 +23,6 @@ public:
 	AllUsers();
 	void Insert(SignUp signup);
 	void DeleteUser(std::string username);
+	bool ValidatePassword(Login login);
 	void display();
 };

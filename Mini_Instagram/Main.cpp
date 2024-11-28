@@ -33,6 +33,7 @@ void MainMenu() {
 	cout << "\n\t\t ================================================" << endl;
 	cout << "\n\n\n\t\t\t1. Login" << endl;
 	cout << "\n\t\t\t2. SignUp" << endl;
+	cout << "\n\t\t\t3. Exit" << endl;
 	cout << "\n\n\n\t\t ================================================" << endl;
 }
 int main() {
@@ -45,17 +46,24 @@ int main() {
 
 	intro();
 	Sleep(2000);
-	MainMenu();
-	cout << "\n\t\t\tEnter a choice : ";
-	cin >> choice;
-	cin.ignore();
+	while (1) {
+		MainMenu();
+		cout << "\n\t\t\tEnter a choice : ";
+		cin >> choice;
+		cin.ignore();
 
-	if (choice == 1) {
-		login.LoginDetails();
-	}
-	else if (choice == 2) {
-		signup.SignUpPage();
-		alluser.Insert(signup);
+		if (choice == 1) {
+			login.LoginDetails();
+			alluser.ValidatePassword(login);
+			Sleep(1000);
+		}
+		else if (choice == 2) {
+			signup.SignUpPage();
+			alluser.Insert(signup);
+		}
+		else if (choice == 3) {
+			exit(0);
+		}
 	}
 
 	system("pause");

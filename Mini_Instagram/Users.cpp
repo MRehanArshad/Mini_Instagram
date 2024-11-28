@@ -1,5 +1,6 @@
 #include"Users.h"
 #include<iostream>
+#include<string>
 
 // Contructor For User Class
 User::User() {
@@ -203,4 +204,32 @@ void preOrder(User* root) {
 
 void AllUsers::display() {
 	preOrder(root);
+}
+
+bool SearchUser(User* root, std::string name, User*& target) {
+	if (root == nullptr) return false;
+	if (name < root->username) {
+		return SearchUser(root->left, name, target);
+	}
+	else if (name > root->username) {
+		return SearchUser(root->right, name, target);
+	}
+	else {
+		target = root;
+		return true;
+	}
+}
+
+bool AllUsers::ValidatePassword(Login login) {
+	User* target = nullptr;
+	if (!SearchUser(root, login.getUsername(), target)) {
+		std::cout<<"This User does not Exsist in the database."<<std::endl;
+		return false;
+	}
+	if (target->password != login.getPassword()) {
+		std::cout << "Password didn't match" << std::endl;
+		return false;
+	}
+	std::cout << "You have Successfully Login!!" << std::endl;
+	return true;
 }
