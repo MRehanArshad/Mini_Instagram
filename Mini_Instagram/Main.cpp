@@ -27,11 +27,36 @@ void intro()
 
 }
 
+void MainMenu() {
+	system("cls");
+	cout << "\n\n\t\t\t\t     Page 1 ";
+	cout << "\n\t\t ================================================" << endl;
+	cout << "\n\n\n\t\t\t1. Login" << endl;
+	cout << "\n\t\t\t2. SignUp" << endl;
+	cout << "\n\n\n\t\t ================================================" << endl;
+}
 int main() {
+	// Variables
 	Login login;
 	SignUp signup;
+	AllUsers alluser;
+	int choice;
+	
+
 	intro();
 	Sleep(2000);
-	signup.SignUpPage();
+	MainMenu();
+	cout << "\n\t\t\tEnter a choice : ";
+	cin >> choice;
+	cin.ignore();
+
+	if (choice == 1) {
+		login.LoginDetails();
+	}
+	else if (choice == 2) {
+		signup.SignUpPage();
+		alluser.Insert(signup);
+	}
+
 	system("pause");
 }
