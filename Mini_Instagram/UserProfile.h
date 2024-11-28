@@ -1,11 +1,11 @@
 #pragma once
-#include"SignUp.h"
+#include"Login.h"
 class UserProfile {
-	SignUp* signup;
+	Login user;
 
 public:
 	UserProfile();
-	UserProfile(SignUp* signup);
-	void setUserProfile(SignUp* signup);
+	UserProfile(Login signup);
+	void setUserProfile(Login signup);
 	void showProfile();
 };

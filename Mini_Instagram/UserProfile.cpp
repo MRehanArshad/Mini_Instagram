@@ -2,18 +2,14 @@
 #include"UserProfile.h"
 using namespace std;
 
-UserProfile::UserProfile() {
-	signup = nullptr;
+UserProfile::UserProfile() { }
+UserProfile::UserProfile(Login login) {
+	this->user = login;
 }
-UserProfile::UserProfile(SignUp* signup) {
-	this->signup = signup;
-}
-void UserProfile::setUserProfile(SignUp* signup) {
-	this->signup = signup;
+void UserProfile::setUserProfile(Login login) {
+	this->user = login;
 }
 void UserProfile::showProfile() {
-	cout << "UserName : " << signup->getUsername() << endl;
-	cout << "Date Of Birth : " << signup->getDateOfBirth() << endl;
-	cout << "Country : " << signup->getCountry() << endl;
+	cout << "UserName : " << user.getUsername() << endl;
 }
 // This is a change
