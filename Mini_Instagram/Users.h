@@ -3,6 +3,7 @@
 #include"Login.h"
 #include"Friend.h"
 #include"Notification.h"
+#include"Messages.h"
 
 class User {
 public:
@@ -15,12 +16,16 @@ public:
 	int height;
 	Friend Friend_List;
 	Notification notification;
+	MessageStack msgStk;
 	User();
 	User(SignUp signup);
 	bool AddFriend(std::string name);
 	bool deleteFriend(std::string name);
 	bool unblockFriend(std::string key);
 	bool blockFriend(std::string key);
+	bool viewMessages();
+	bool addMsg(std::string name, std::string msg);
+	void displayFriends();
 };
 
 class AllUsers {
@@ -33,6 +38,6 @@ public:
 	void Insert(SignUp signup);
 	void DeleteUser(std::string username);
 	bool ValidatePassword(Login login);
+	bool addMsg(std::string name, std::string msg);
 	void display();
-
 };
