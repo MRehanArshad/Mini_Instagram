@@ -148,7 +148,7 @@ int main() {
 				else if (choice == 2) {
 					cout << "\n\n\t\t\tEnter a Post to Delete : ";
 					getline(cin, str);
-					alluser.addPost(login, str);
+					alluser.deletePost(login, str);
 				}
 				else if (choice == 3) {
 					alluser.displayPost(login);

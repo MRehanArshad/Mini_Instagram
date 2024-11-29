@@ -290,7 +290,11 @@ void AllUsers::addPost(Login login, std::string str) {
 }
 
 void deleteFromStack(PostStack& posts, std::string str) {
-	if (posts.empty() || posts.top() == str) {
+	if (posts.empty()) {
+		return;
+	}
+	if (posts.top() == str) {
+		posts.pop();
 		return;
 	}
 	std::string top = posts.top();
@@ -304,6 +308,15 @@ void AllUsers::deletePost(Login login, std::string str) {
 	SearchUser(root, login.getUsername(), target);
 	deleteFromStack(target->posts, str);
 } 
+void displaytheStack(PostStack& posts) {
+	if (posts.empty())
+		return;
+	std::string top = posts.top();
+	posts.pop();
+	std::cout << "\n\t\t\t" << top << std::endl;
+	displaytheStack(posts);
+	posts.push(top);
+}
 void AllUsers::displayPost(Login login) {
 	User* target = nullptr;
 	SearchUser(root, login.getUsername(), target);
@@ -311,16 +324,12 @@ void AllUsers::displayPost(Login login) {
 	system("cls");
 	std::cout << "\n\n\t\t\t\t     Posts ";
 	std::cout << "\n\t\t ================================================" << std::endl;
-	if (target->notification.empty()) {
+	if (target->posts.empty()) {
 		std::cout << "\n\t\t\tThere is no Posts" << std::endl;
 		std::cout << "\n\n\t\t ================================================" << std::endl;
 		return;
 	}
-	while (!target->notification.empty()) {
-		std::string msg = target->notification.Front();
-		std::cout << "\n\t\t\tPost " << i << " : " << msg << " ";
-		target->notification.Dequeue();
-	}
+	displaytheStack(target->posts);
 	std::cout << "\n\n\t\t ================================================" << std::endl;
 }
 
