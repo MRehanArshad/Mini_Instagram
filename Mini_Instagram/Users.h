@@ -17,6 +17,7 @@ public:
 	int height;
 	Friend Friend_List;
 	Notification notification;
+	PostStack posts;
 	User();
 	User(SignUp signup);
 	bool AddFriend(std::string name);
