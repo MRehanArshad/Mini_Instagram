@@ -35,7 +35,7 @@ void input(T& val) {
 	{
 		cin.clear();
 		cin.ignore(1000, '\n');
-		cout << "Wrong input!\n" << "Enter Again: ";
+		cout << "\n\t\t\tWrong input!\n" << "\t\t\tEnter Again: ";
 		cin >> val;
 	}
 }
