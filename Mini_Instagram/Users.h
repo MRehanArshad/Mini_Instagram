@@ -18,6 +18,7 @@ public:
 	Friend Friend_List;
 	Notification notification;
 	PostStack posts;
+	MessageStack msgStk;
 	User();
 	User(SignUp signup);
 	bool AddFriend(std::string name);
@@ -25,7 +26,6 @@ public:
 	bool unblockFriend(std::string key);
 	bool blockFriend(std::string key);
 	bool viewMessages();
-	bool addMsg(std::string name, std::string msg);
 	void displayFriends();
 };
 
@@ -42,6 +42,7 @@ public:
 	void viewNotification(Login login);
 	void addPost(Login login, std::string str);
 	void deletePost(Login login, std::string str);
+	bool addMsg(std::string name, std::string msg);
 	void displayPost(Login login);
 	void display();
 };

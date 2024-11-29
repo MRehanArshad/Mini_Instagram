@@ -323,8 +323,6 @@ void AllUsers::displayPost(Login login) {
 	}
 	std::cout << "\n\n\t\t ================================================" << std::endl;
 }
-}
-}
 
 bool AllUsers::addMsg(std::string name, std::string msg) {
 	User* temp = new User();
