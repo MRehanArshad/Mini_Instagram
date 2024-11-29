@@ -39,5 +39,8 @@ public:
 	void DeleteUser(std::string username);
 	bool ValidatePassword(Login login);
 	void viewNotification(Login login);
+	void addPost(Login login, std::string str);
+	void deletePost(Login login, std::string str);
+	void displayPost(Login login);
 	void display();
 };
