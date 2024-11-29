@@ -113,7 +113,7 @@ int main() {
 		while (!isLogin) {
 			MainMenu();
 			cout << "\n\t\t\tEnter a choice : ";
-			cin >> choice;
+			input(choice);
 			cin.ignore();
 
 			if (choice == 1) {
@@ -133,12 +133,12 @@ int main() {
 		while (!logout) {
 			UserProfile(login);
 			cout << "\n\t\t\tEnter a choice : ";
-			cin >> choice;
+			input(choice);
 			cin.ignore();
 			if (choice == 1) {
 				PostsMenu();
 				cout << "\n\t\t\tEnter a choice : ";
-				cin >> choice;
+				input(choice);
 				cin.ignore();
 				if (choice == 1) {
 					cout << "\n\n\t\t\tEnter a Post : ";
