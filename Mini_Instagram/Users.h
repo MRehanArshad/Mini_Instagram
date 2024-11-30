@@ -3,6 +3,7 @@
 #include"Login.h"
 #include"Friend.h"
 #include"Notification.h"
+#include"Posts.h"
 #include"Messages.h"
 
 class User {
@@ -16,6 +17,7 @@ public:
 	int height;
 	Friend Friend_List;
 	Notification notification;
+	PostStack posts;
 	MessageStack msgStk;
 	User();
 	User(SignUp signup);
@@ -24,7 +26,6 @@ public:
 	bool unblockFriend(std::string key);
 	bool blockFriend(std::string key);
 	bool viewMessages();
-	bool addMsg(std::string name, std::string msg);
 	void displayFriends();
 };
 
@@ -40,5 +41,9 @@ public:
 	bool ValidatePassword(Login login);
 	bool addMsg(std::string name, std::string msg);
 	void viewNotification(Login login);
+	void addPost(Login login, std::string str);
+	void deletePost(Login login, std::string str);
+	bool addMsg(std::string name, std::string msg);
+	void displayPost(Login login);
 	void display();
 };

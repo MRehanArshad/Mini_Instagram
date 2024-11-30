@@ -1,6 +1,7 @@
 #include"Users.h"
 #include<iostream>
 #include<string>
+#include"Posts.h"
 
 // Contructor For User Class
 User::User() {
@@ -289,5 +290,67 @@ void AllUsers::viewNotification(Login login) {
 		std::cout << "\n\t\t\tNotification " << i << " : " << msg << " ";
 		target->notification.Dequeue();
 	}
+	std::cout << "\n\n\t\t ================================================" << std::endl;
+}
+
+void AllUsers::addPost(Login login, std::string str) {
+	User* target = nullptr;
+	SearchUser(root, login.getUsername(), target);
+	target->posts.push(str);
+}
+
+void deleteFromStack(PostStack& posts, std::string str) {
+	if (posts.empty()) {
+		return;
+	}
+	if (posts.top() == str) {
+		posts.pop();
+		return;
+	}
+	std::string top = posts.top();
+	posts.pop();
+	deleteFromStack(posts, str);
+	posts.push(top);
+}
+
+void AllUsers::deletePost(Login login, std::string str) {
+	User* target = nullptr;
+	SearchUser(root, login.getUsername(), target);
+	deleteFromStack(target->posts, str);
+} 
+void displaytheStack(PostStack& posts) {
+	if (posts.empty())
+		return;
+	std::string top = posts.top();
+	posts.pop();
+	std::cout << "\n\t\t\t" << top << std::endl;
+	displaytheStack(posts);
+	posts.push(top);
+}
+void AllUsers::displayPost(Login login) {
+	User* target = nullptr;
+	SearchUser(root, login.getUsername(), target);
+	int i = 1;
+	system("cls");
+	std::cout << "\n\n\t\t\t\t     Posts ";
+	std::cout << "\n\t\t ================================================" << std::endl;
+	if (target->posts.empty()) {
+		std::cout << "\n\t\t\tThere is no Posts" << std::endl;
+		std::cout << "\n\n\t\t ================================================" << std::endl;
+		return;
+	}
+	displaytheStack(target->posts);
+	std::cout << "\n\n\t\t ================================================" << std::endl;
+}
+
+bool AllUsers::addMsg(std::string name, std::string msg) {
+	User* temp = new User();
+	temp->username = name;
+	if (SearchUser(root, name, temp)) {
+		temp->msgStk.push(name, msg);
+		return 1;
+	}
+	return 0;
+}
 	std::cout << "\n\n\t\t ================================================" << std::endl;
 }
