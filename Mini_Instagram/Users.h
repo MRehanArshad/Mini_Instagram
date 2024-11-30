@@ -50,4 +50,8 @@ public:
 	void viewRequest(Login login);
 	void AcceptRequest(Login login, std::string str);
 	void viewFriends(Login login);
+	void BlockFriend(Login login, std::string);
+	void DeleteFriend(Login login, std::string);
+	void viewBlockFriend(Login login);
+	void unBlockFriend(Login login, std::string);
 };

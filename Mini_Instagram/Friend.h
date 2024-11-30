@@ -33,4 +33,6 @@ public:
 	void AcceptAllRequest();
 
 	void AcceptRequest(std::string);
+
+	void displayBlockFriends();
 };

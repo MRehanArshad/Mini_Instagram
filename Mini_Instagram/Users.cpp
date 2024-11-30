@@ -367,7 +367,7 @@ void AllUsers::sendRequest(Login login, std::string username) {
 	}
 	target2->AddFriend(target->username);
 	std::cout << "\n\t\t\tRequest sent successfully" << std::endl;
-	std::string str = "Friend Request of" + target->username;
+	std::string str = "Friend Request of " + target->username;
 	target2->notification.Enqueue(str);
 }
 
@@ -385,6 +385,12 @@ void AllUsers::AcceptRequest(Login login, std::string str) {
 	}
 	else {
 		target->Friend_List.AcceptRequest(str);
+		User* target2 = nullptr;
+		if (!SearchUser(root, str, target2)) {
+			std::cout << "\n\t\t\tFriend didn't found" << std::endl;
+			return;
+		}
+		target2->notification.Enqueue(target->username + " accept your request");
 	}
 }
 
@@ -392,4 +398,28 @@ void AllUsers::viewFriends(Login login) {
 	User* target = nullptr;
 	SearchUser(root, login.getUsername(), target);
 	target->displayFriends();
+}
+
+void AllUsers::BlockFriend(Login login, std::string username) {
+	User* target = nullptr;
+	SearchUser(root, login.getUsername(), target);
+	target->Friend_List.updateFriend(username, username, "Blocked");
+}
+
+void AllUsers::DeleteFriend(Login login, std::string username) {
+	User* target = nullptr;
+	SearchUser(root, login.getUsername(), target);
+	target->Friend_List.deleteFriend(username);
+}
+
+void AllUsers::viewBlockFriend(Login login) {
+	User* target = nullptr;
+	SearchUser(root, login.getUsername(), target);
+	target->Friend_List.displayBlockFriends();
+}
+
+void AllUsers::unBlockFriend(Login login, std::string username) {
+	User* target = nullptr;
+	SearchUser(root, login.getUsername(), target);
+	target->Friend_List.updateFriend(username, username, "Friend");
 }

@@ -120,3 +120,19 @@ void Friend::AcceptRequest(std::string username) {
 		temp = temp->next;
 	}
 }
+
+void Friend::displayBlockFriends() {
+	system("cls");
+	Friend_Node* temp = matrix;
+	std::cout << "\n\n\t\t\t\t     Blocked ";
+	std::cout << "\n\t\t ================================================" << std::endl;
+	if (!temp) {
+		std::cout << "\n\t\t\t" << "There is no Blocked Friend" << std::endl;
+	}
+	while (temp) {
+		if (temp->status == "Blocked")
+			std::cout << "\n\t\t\t" << temp->name << std::endl;
+		temp = temp->next;
+	}
+	std::cout << "\n\n\t\t ================================================" << std::endl;
+}

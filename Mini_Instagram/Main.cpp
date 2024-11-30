@@ -185,10 +185,22 @@ int main() {
 					char ch = _getch();
 				}
 				else if (choice == 4) {
-
+					alluser.viewFriends(login);
+					cout << "\n\t\t\tEnter the username to block : ";
+					getline(cin, str);
+					alluser.BlockFriend(login, str);
 				}
 				else if (choice == 5) {
-
+					alluser.viewFriends(login);
+					cout << "\n\t\t\tEnter the username to delete : ";
+					getline(cin, str);
+					alluser.DeleteFriend(login, str);
+				}
+				else if (choice == 6) {
+					alluser.viewBlockFriend(login);
+					cout << "\n\t\t\tEnter the username to unblock : ";
+					getline(cin, str);
+					alluser.unBlockFriend(login, str);
 				}
 			}
 			else if (choice == 4) {
