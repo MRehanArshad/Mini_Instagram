@@ -117,6 +117,9 @@ int main() {
 			else if (choice == 2) {
 				signup.SignUpPage();
 				alluser.Insert(signup);
+				cout << "\n\t\t\tNew SignUp at " << signup.getTimetoSignUp() << endl;
+				cout << "\n\t\t\tPress any key to continue....." << endl;
+				char ch = _getch();
 			}
 			else if (choice == 3) {
 				exit(0);

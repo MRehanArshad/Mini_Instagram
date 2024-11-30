@@ -1,5 +1,6 @@
 #include<iostream>
 #include"SignUp.h"
+#include<ctime>
 using namespace std;
 
 // Contructors
@@ -64,4 +65,15 @@ void SignUp::SignUpPage() {
 	cout << "\n\t\t\tEnter the Country : ";
 	getline(cin, Country);
 	cout << "\n\n\n\t\t ================================================" << endl;
+	time_t now = time(nullptr);
+	char buffer[26];
+	if (ctime_s(buffer, sizeof(buffer), &now) == 0) {
+		for (int i = 0; i < 26; i++) {
+			timetoSignUp += buffer[i];
+		}
+ 	}
+}
+
+std::string SignUp::getTimetoSignUp() {
+	return timetoSignUp;
 }

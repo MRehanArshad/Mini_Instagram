@@ -5,6 +5,7 @@ class SignUp {
 	std::string Password;
 	std::string DateOfBirth;
 	std::string Country;
+	std::string timetoSignUp;
 public:
 	SignUp();
 	SignUp(std::string Username, std::string password, std::string DateOfBirth, std::string Country);
@@ -16,5 +17,6 @@ public:
 	std::string getPassword();
 	std::string getDateOfBirth();
 	std::string getCountry();
+	std::string getTimetoSignUp();
 	void SignUpPage();
 };

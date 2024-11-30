@@ -343,14 +343,4 @@ void AllUsers::displayPost(Login login) {
 	std::cout << "\n\n\t\t ================================================" << std::endl;
 }
 
-bool AllUsers::addMsg(std::string name, std::string msg) {
-	User* temp = new User();
-	temp->username = name;
-	if (SearchUser(root, name, temp)) {
-		temp->msgStk.push(name, msg);
-		return 1;
-	}
-	return 0;
-}
-	std::cout << "\n\n\t\t ================================================" << std::endl;
-}
+	

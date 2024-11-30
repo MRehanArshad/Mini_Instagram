@@ -43,7 +43,6 @@ public:
 	void viewNotification(Login login);
 	void addPost(Login login, std::string str);
 	void deletePost(Login login, std::string str);
-	bool addMsg(std::string name, std::string msg);
 	void displayPost(Login login);
 	void display();
 };
