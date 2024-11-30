@@ -262,6 +262,16 @@ bool AllUsers::ValidatePassword(Login login) {
 	return true;
 }
 
+bool AllUsers::addMsg(std::string name, std::string msg) {
+	User* temp = new User();
+	temp->username = name;
+	if (SearchUser(root, name, temp)) {
+		temp->msgStk.push(name, msg);
+		return 1;
+	}
+	return 0;
+}
+
 void AllUsers::viewNotification(Login login) {
 	User* target = nullptr;
 	SearchUser(root, login.getUsername(), target);
@@ -280,15 +290,4 @@ void AllUsers::viewNotification(Login login) {
 		target->notification.Dequeue();
 	}
 	std::cout << "\n\n\t\t ================================================" << std::endl;
-}
-}
-
-bool AllUsers::addMsg(std::string name, std::string msg) {
-	User* temp = new User();
-	temp->username = name;
-	if (SearchUser(root, name, temp)) {
-		temp->msgStk.push(name, msg);
-		return 1;
-	}
-	return 0;
 }
