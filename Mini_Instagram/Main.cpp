@@ -69,11 +69,12 @@ void FriendsMenu()
 	system("cls");
 	cout << "\n\n\t\t\t\t     Friends Page ";
 	cout << "\n\t\t ================================================" << endl;
-	cout << "\n\n\n\t\t\t1. Add a Friend" << endl;
-	cout << "\n\t\t\t2. View Friends" << endl;
-	cout << "\n\t\t\t2. Block Friends" << endl;
-	cout << "\n\t\t\t3. Delete Friends" << endl;
-	cout << "\n\t\t\t4. UnBlock Friends" << endl;
+	cout << "\n\n\n\t\t\t1. Send Friend Request" << endl;
+	cout << "\n\t\t\t2. View Friend Request" << endl;
+	cout << "\n\t\t\t3. View Friends" << endl;
+	cout << "\n\t\t\t4. Block Friends" << endl;
+	cout << "\n\t\t\t5. Delete Friends" << endl;
+	cout << "\n\t\t\t6. UnBlock Friends" << endl;
 	cout << "\n\n\n\t\t ================================================" << endl;
 }
 
@@ -159,8 +160,36 @@ int main() {
 			}
 			else if (choice == 3) {
 				FriendsMenu();
-				cout << "\n\n\t\t\tPress any key continue...." << endl;
-				char ch = _getch();
+				cout << "\n\t\t\tEnter a choice : ";
+				input(choice);
+				cin.ignore();
+				if (choice == 1) {
+					alluser.display(login);
+					cout << "\n\t\t\tGive Username to send friend request : ";
+					getline(cin, str);
+					alluser.sendRequest(login, str);
+					cout << "\n\n\t\t\tPress any key continue...." << endl;
+					char ch = _getch();
+				}
+				else if (choice == 2) {
+					alluser.viewRequest(login);
+					cout << "\n\t\t\tGive Username to send friend request : ";
+					getline(cin, str);
+					alluser.AcceptRequest(login, str);
+					cout << "\n\n\t\t\tPress any key continue...." << endl;
+					char ch = _getch();
+				}
+				else if (choice == 3) {
+					alluser.viewFriends(login);
+					cout << "\n\n\t\t\tPress any key continue...." << endl;
+					char ch = _getch();
+				}
+				else if (choice == 4) {
+
+				}
+				else if (choice == 5) {
+
+				}
 			}
 			else if (choice == 4) {
 				alluser.viewNotification(login);

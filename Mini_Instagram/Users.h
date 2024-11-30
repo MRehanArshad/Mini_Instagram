@@ -12,6 +12,7 @@ public:
 	std::string password;
 	std::string date_Of_Birth;
 	std::string country;
+	std::string timetosignup;
 	User* left;
 	User* right;
 	int height;
@@ -44,5 +45,9 @@ public:
 	void addPost(Login login, std::string str);
 	void deletePost(Login login, std::string str);
 	void displayPost(Login login);
-	void display();
+	void display(Login login);
+	void sendRequest(Login login, std::string username);
+	void viewRequest(Login login);
+	void AcceptRequest(Login login, std::string str);
+	void viewFriends(Login login);
 };

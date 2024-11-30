@@ -27,4 +27,10 @@ public:
 	bool searchFriend(std::string name);
 
 	bool updateFriend(std::string, std::string, std::string);
+
+	void requestedFriends();
+
+	void AcceptAllRequest();
+
+	void AcceptRequest(std::string);
 };

@@ -46,16 +46,19 @@ bool Friend::deleteFriend(std::string n) {
 }
 
 void Friend::displayFriends() {
-	if (!matrix)
-		std::cout << "No Friends!\n";
-	else {
-		Friend_Node* cur = matrix;
-		for (int i = 1; cur; i++) {
-			std::cout << i << ". " << cur->name << "\n";
-			std::cout << " " << cur->status << "\n";
-		}
-
+	system("cls");
+	Friend_Node* temp = matrix;
+	std::cout << "\n\n\t\t\t\t     Friends ";
+	std::cout << "\n\t\t ================================================" << std::endl;
+	if (!temp) {
+		std::cout << "\n\t\t\t" << "There is no Friend" << std::endl;
 	}
+	while (temp) {
+		if (temp->status == "Friend")
+			std::cout << "\n\t\t\t" << temp->name << std::endl;
+		temp = temp->next;
+	}
+	std::cout << "\n\n\t\t ================================================" << std::endl;
 }
 
 bool Friend::searchFriend(std::string name) {
@@ -81,5 +84,39 @@ bool Friend::updateFriend(std::string key, std::string name, std::string status)
 			cur->status = status;
 			return 1;
 		}
+	}
+}
+
+void Friend::requestedFriends() {
+	system("cls");
+	Friend_Node* temp = matrix;
+	std::cout << "\n\n\t\t\t\t     Requests ";
+	std::cout << "\n\t\t ================================================" << std::endl;
+	if (!temp) {
+		std::cout << "\n\t\t\t" << "There is no Request" << std::endl;
+	}
+	while (temp) {
+		if (temp->status == "Requested")
+			std::cout << "\n\t\t\t" << temp->name << std::endl;
+		temp = temp->next;
+	}
+	std::cout << "\n\n\t\t ================================================" << std::endl;
+}
+
+void Friend::AcceptAllRequest() {
+	Friend_Node* temp = matrix;
+	while (temp) {
+		if (temp->status == "Requested")
+			temp->status = "Friend";
+		temp = temp->next;
+	}
+}
+
+void Friend::AcceptRequest(std::string username) {
+	Friend_Node* temp = matrix;
+	while (temp) {
+		if (temp->name == username && temp->status == "Requested")
+			temp->status = "Friend";
+		temp = temp->next;
 	}
 }
