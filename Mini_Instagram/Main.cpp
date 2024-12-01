@@ -250,8 +250,23 @@ int main() {
 			}
 			else if (choice == 2) {
 				MessagesMenu();
-				cout << "\n\n\t\t\tPress any key continue...." << endl;
-				char ch = _getch();
+				cout << "\n\t\t\tEnter the choice : ";
+				input(choice);
+				cin.ignore();
+				if (choice == 1) {
+					alluser.viewFriends(login);
+					cout << "\n\t\t\tEnter name of friend to message : ";
+					getline(cin, str);
+					string message;
+					cout << "\n\t\t\tEnter the Message : ";
+					getline(cin, message);
+					alluser.addMsg(login, str, message);
+				}
+				else if (choice == 2) {
+					alluser.viewMessage(login);
+					cout << "\n\n\t\t\tPress any key continue...." << endl;
+					char ch = _getch();
+				}
 			}
 			else if (choice == 3) {
 				FriendsMenu();

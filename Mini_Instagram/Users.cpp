@@ -272,12 +272,23 @@ bool AllUsers::ValidatePassword(Login login) {
 	return true;
 }
 
-bool AllUsers::addMsg(std::string name, std::string msg) {
+bool AllUsers::addMsg(Login login, std::string name, std::string msg) {
 	User* temp = new User();
 	temp->username = name;
+	User* target = nullptr;
+	SearchUser(root, login.getUsername(), target);
 	if (SearchUser(root, name, temp)) {
-		temp->msgStk.push(name, msg);
+		if (target->Friend_List.searchFriend(name)) {
+			temp->msgStk.push(login.getUsername(), msg);
+			temp->notification.Enqueue("New Message from " + login.getUsername());
+		}
+		else {
+			std::cout << "\n\t\t\tYou are not the friend of " << name << std::endl;
+		}
 		return 1;
+	}
+	else {
+		std::cout << "\n\t\t\tUser does not exsist in the database" << std::endl;
 	}
 	return 0;
 }
@@ -298,6 +309,7 @@ void AllUsers::viewNotification(Login login) {
 		std::string msg = target->notification.Front();
 		std::cout << "\n\t\t\tNotification " << i << " : " << msg << " ";
 		target->notification.Dequeue();
+		i++;
 	}
 	std::cout << "\n\n\t\t ================================================" << std::endl;
 }
@@ -427,4 +439,19 @@ void AllUsers::unBlockFriend(Login login, std::string username) {
 User* AllUsers::getAllUsers()
 {
 	return root;
+}
+
+void AllUsers::viewMessage(Login login) {
+	User* target = nullptr;
+	SearchUser(root, login.getUsername(), target);
+	system("cls");
+	std::cout << "\n\n\t\t\t\t     Messages ";
+	std::cout << "\n\t\t ================================================" << std::endl;
+	if (target->msgStk.isEmpty()) {
+		std::cout << "\n\t\t\tThere is no Messages" << std::endl;
+		std::cout << "\n\n\t\t ================================================" << std::endl;
+		return;
+	}
+	target->msgStk.display();
+	std::cout << "\n\n\t\t ================================================" << std::endl;
 }

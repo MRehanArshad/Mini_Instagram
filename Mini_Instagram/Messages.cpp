@@ -38,8 +38,8 @@ bool MessageStack::display() {
 	while (!isEmpty())
 	{
 		string name = top->name;
-		cout << "Sender : " << name << "\n";
-		cout << "Message : " << Top(name) << "\n";
+		cout << "\n\t\t\tMessage : " << name << "\n";
+		cout << "\t\t\tSender : " << Top(name) << "\n";
 		stck2.push(name, Top(name));
 		pop(name);
 	}
