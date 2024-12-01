@@ -5,6 +5,7 @@
 #include"Notification.h"
 #include"Posts.h"
 #include"Messages.h"
+#include "FriendRequest.h"
 
 class User {
 public:
@@ -12,6 +13,7 @@ public:
 	std::string password;
 	std::string date_Of_Birth;
 	std::string country;
+	FriendRequest RequestStack;
 	std::string timetosignup;
 	User* left;
 	User* right;
@@ -28,6 +30,7 @@ public:
 	bool blockFriend(std::string key);
 	bool viewMessages();
 	void displayFriends();
+	bool isFriend(std::string name);
 };
 
 class AllUsers {
@@ -40,7 +43,9 @@ public:
 	void Insert(SignUp signup);
 	void DeleteUser(std::string username);
 	bool ValidatePassword(Login login);
-	bool addMsg(std::string name, std::string msg);
+	//----- TBD ------
+	bool addMessage(std::string name, std::string msg);
+
 	void viewNotification(Login login);
 	void addPost(Login login, std::string str);
 	void deletePost(Login login, std::string str);

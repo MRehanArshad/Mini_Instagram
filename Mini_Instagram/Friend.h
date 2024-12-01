@@ -39,4 +39,6 @@ public:
 	bool isEmpty();
 
 	Friend_Node* getList();
+
+	bool isEmpty();
 };
