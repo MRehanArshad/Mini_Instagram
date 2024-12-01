@@ -28,5 +28,17 @@ public:
 
 	bool updateFriend(std::string, std::string, std::string);
 
+	void requestedFriends();
+
+	void AcceptAllRequest();
+
+	void AcceptRequest(std::string);
+
+	void displayBlockFriends();
+
+	bool isEmpty();
+
+	Friend_Node* getList();
+
 	bool isEmpty();
 };

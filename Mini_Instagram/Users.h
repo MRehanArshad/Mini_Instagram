@@ -14,6 +14,7 @@ public:
 	std::string date_Of_Birth;
 	std::string country;
 	FriendRequest RequestStack;
+	std::string timetosignup;
 	User* left;
 	User* right;
 	int height;
@@ -48,7 +49,15 @@ public:
 	void viewNotification(Login login);
 	void addPost(Login login, std::string str);
 	void deletePost(Login login, std::string str);
-	bool addMsg(std::string name, std::string msg);
 	void displayPost(Login login);
-	void display();
+	void display(Login login);
+	void sendRequest(Login login, std::string username);
+	void viewRequest(Login login);
+	void AcceptRequest(Login login, std::string str);
+	void viewFriends(Login login);
+	void BlockFriend(Login login, std::string);
+	void DeleteFriend(Login login, std::string);
+	void viewBlockFriend(Login login);
+	void unBlockFriend(Login login, std::string);
+	User* getAllUsers();
 };

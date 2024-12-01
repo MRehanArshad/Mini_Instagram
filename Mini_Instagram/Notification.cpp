@@ -38,4 +38,9 @@ void Notification::Dequeue() {
 	temp = nullptr;
 }
 
-
+void Notification::copyQueue(Notification OBJ) {
+	while (!OBJ.empty()) {
+		this->Enqueue(OBJ.Front());
+		OBJ.Dequeue();
+	}
+}

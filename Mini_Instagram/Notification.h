@@ -18,4 +18,5 @@ public:
 	void Enqueue(std::string);
 	std::string Front();
 	void Dequeue();
+	void copyQueue(Notification OBJ);
 };

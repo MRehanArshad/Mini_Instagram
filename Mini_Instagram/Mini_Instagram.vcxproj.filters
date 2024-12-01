@@ -78,4 +78,11 @@
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="Friends.txt" />
+    <Text Include="Messages.txt" />
+    <Text Include="Notifications.txt" />
+    <Text Include="Posts.txt" />
+    <Text Include="Users.txt" />
+  </ItemGroup>
 </Project>

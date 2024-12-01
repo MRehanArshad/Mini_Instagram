@@ -15,7 +15,7 @@ User::User() {
 }
 
 bool User::AddFriend(std::string name) {
-	Friend_List.addFriend(name, "Friend");
+	Friend_List.addFriend(name, "Requested");
 	return 1;
 }
 
@@ -47,6 +47,7 @@ User::User(SignUp signup) {
 	password = signup.getPassword();
 	date_Of_Birth = signup.getDateOfBirth();
 	country = signup.getCountry();
+	timetosignup = signup.getTimetoSignUp();
 	left = nullptr;
 	right = nullptr;
 	height = 1;
@@ -230,15 +231,23 @@ void AllUsers::DeleteUser(std::string username) {
 	root = deleteNode(root, username); // Update the root of the tree
 }
 
-void preOrder(User* root) {
+void preOrder(User* root, std::string username) {
 	if (root == nullptr) return;
-	preOrder(root->left);
-	std::cout << root->username << std::endl;
-	preOrder(root->right);
+	preOrder(root->left, username);
+	if(root->username != username)
+	std::cout <<"\n\t\t\t" << root->username << std::endl;
+	preOrder(root->right, username);
 }
 
-void AllUsers::display() {
-	preOrder(root);
+void AllUsers::display(Login login) {
+	system("cls");
+	std::cout << "\n\n\t\t\t\t     Suggestions ";
+	std::cout << "\n\t\t ================================================" << std::endl;
+	if (root == nullptr) {
+		std::cout << "There is no other user" << std::endl;
+	} else
+		preOrder(root, login.getUsername());
+	std::cout << "\n\n\t\t ================================================" << std::endl;
 }
 
 //Searches the name and sets that node in target
@@ -350,6 +359,76 @@ void AllUsers::displayPost(Login login) {
 	std::cout << "\n\n\t\t ================================================" << std::endl;
 }
 
+void AllUsers::sendRequest(Login login, std::string username) {
+	if (login.getUsername() == username) {
+		std::cout << "\n\t\t\tYou cannot send request to yourself" << std::endl;
+		return;
+	}
+	User* target = nullptr;
+	SearchUser(root, login.getUsername(), target);
+
+	User* target2 = nullptr;
+	if (!SearchUser(root, username, target2)) {
+		std::cout << "\n\t\t\tUser didn't found!!" << std::endl;
+		return;
+	}
+	target2->AddFriend(target->username);
+	std::cout << "\n\t\t\tRequest sent successfully" << std::endl;
+	std::string str = "Friend Request of " + target->username;
+	target2->notification.Enqueue(str);
+}
+
+void AllUsers::viewRequest(Login login) {
+	User* target = nullptr;
+	SearchUser(root, login.getUsername(), target);
+	target->Friend_List.requestedFriends();
+}
+
+void AllUsers::AcceptRequest(Login login, std::string str) {
+	User* target = nullptr;
+	SearchUser(root, login.getUsername(), target);
+	if (str == "All") {
+		target->Friend_List.AcceptAllRequest();
+	}
+	else {
+		target->Friend_List.AcceptRequest(str);
+		User* target2 = nullptr;
+		if (!SearchUser(root, str, target2)) {
+			std::cout << "\n\t\t\tFriend didn't found" << std::endl;
+			return;
+		}
+		target2->notification.Enqueue(target->username + " accept your request");
+	}
+}
+
+void AllUsers::viewFriends(Login login) {
+	User* target = nullptr;
+	SearchUser(root, login.getUsername(), target);
+	target->displayFriends();
+}
+
+void AllUsers::BlockFriend(Login login, std::string username) {
+	User* target = nullptr;
+	SearchUser(root, login.getUsername(), target);
+	target->Friend_List.updateFriend(username, username, "Blocked");
+}
+
+void AllUsers::DeleteFriend(Login login, std::string username) {
+	User* target = nullptr;
+	SearchUser(root, login.getUsername(), target);
+	target->Friend_List.deleteFriend(username);
+}
+
+void AllUsers::viewBlockFriend(Login login) {
+	User* target = nullptr;
+	SearchUser(root, login.getUsername(), target);
+	target->Friend_List.displayBlockFriends();
+}
+
+void AllUsers::unBlockFriend(Login login, std::string username) {
+	User* target = nullptr;
+	SearchUser(root, login.getUsername(), target);
+	target->Friend_List.updateFriend(username, username, "Friend");
 bool AllUsers::addMessage(std::string name, std::string msg) {
 	User* temp = new User();
 	temp->username = name;
@@ -358,4 +437,9 @@ bool AllUsers::addMessage(std::string name, std::string msg) {
 		return 1;
 	}
 	return 0;
+}
+
+User* AllUsers::getAllUsers()
+{
+	return root;
 }

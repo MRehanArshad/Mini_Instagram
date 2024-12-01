@@ -35,3 +35,12 @@ void PostStack::pop() {
 	delete newNode;
 	newNode = nullptr;
 }
+
+void PostStack::copyStack(PostStack obj) {
+	while (!obj.empty()) {
+		string post;
+		post = obj.top();
+		this->push(post);
+		obj.pop();
+	}
+}
