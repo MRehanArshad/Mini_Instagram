@@ -54,4 +54,5 @@ public:
 	void DeleteFriend(Login login, std::string);
 	void viewBlockFriend(Login login);
 	void unBlockFriend(Login login, std::string);
+	User* getAllUsers();
 };

@@ -15,4 +15,5 @@ public:
 	std::string top();
 	void pop();
 	bool empty();
+	void copyStack(PostStack OBJ);
 };

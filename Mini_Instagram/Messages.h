@@ -19,4 +19,5 @@ public:
 	void push(std::string nam, std::string msg);
 	bool isEmpty();
 	bool display();
+	void copyStack(MessageStack obj);
 };

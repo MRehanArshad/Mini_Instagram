@@ -35,4 +35,8 @@ public:
 	void AcceptRequest(std::string);
 
 	void displayBlockFriends();
+
+	bool isEmpty();
+
+	Friend_Node* getList();
 };

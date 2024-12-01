@@ -69,7 +69,7 @@ void SignUp::SignUpPage() {
 	time_t now = time(nullptr);
 	char buffer[26];
 	if (ctime_s(buffer, sizeof(buffer), &now) == 0) {
-		for (int i = 0; i < 26; i++) {
+		for (int i = 0; i < 24; i++) {
 			timetoSignUp += buffer[i];
 		}
  	}

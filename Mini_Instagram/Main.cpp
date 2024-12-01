@@ -5,19 +5,24 @@
 #include"Posts.h"
 #include"Notification.h"
 #include"Messages.h"
+#include<string>
 #include"FriendRequest.h"
 #include"UserProfile.h"
 #include"Users.h"
 #include<conio.h>
+#include<fstream>
+#include"Friend.h"
+#include "Messages.h"
+
 using namespace std;
 
 void intro()
 {
 	string str = "\n\n\n\t /$$$$$$                       /$$                                                         \n\t|_  $$_/                      | $$                                                         \n\t  | $$   /$$$$$$$   /$$$$$$$ /$$$$$$    /$$$$$$   /$$$$$$   /$$$$$$  /$$$$$$  /$$$$$$/$$$$ \n\t  | $$  | $$__  $$ /$$_____/|_  $$_/   |____  $$ /$$__  $$ /$$__  $$|____  $$| $$_  $$_  $$\n\t  | $$  | $$  \\ $$|  $$$$$$   | $$      /$$$$$$$| $$  \\ $$| $$  \\__/ /$$$$$$$| $$ \\ $$ \\ $$\n\t  | $$  | $$  | $$ \\____  $$  | $$ /$$ /$$__  $$| $$  | $$| $$      /$$__  $$| $$ | $$ | $$\n\t /$$$$$$| $$  | $$ /$$$$$$$/  |  $$$$/|  $$$$$$$|  $$$$$$$| $$     |  $$$$$$$| $$ | $$ | $$\n\t|______/|__/  |__/|_______/    \\___/   \\_______/ \\____  $$|__/      \\_______/|__/ |__/ |__/\n\t                                                 /$$  \\ $$                                 \n\t                                                |  $$$$$$/                                 \n\t                                                 \\______/                                  \n";
 
-	for (char c : str) {
-		cout << c;
-		Sleep(0);
+	for (int i = 0; i < str.size(); i++) {
+		cout << str[i];
+		Sleep(0.5);
 	}
 }
 
@@ -31,6 +36,90 @@ void input(T& val) {
 		cout << "\n\t\t\tWrong input!\n" << "\t\t\tEnter Again: ";
 		cin >> val;
 	}
+}
+
+//Saves to file in order name, password, country, DOB, height, left, right, time of sign up
+User* saveAVL(User* allusers, ofstream& outUser, ofstream& outFriends, ofstream& outMsg, ofstream& outPost, ofstream& outNotifications) {
+	if (!allusers)
+		return allusers;
+	saveAVL(allusers->left, outUser, outFriends, outMsg, outPost, outNotifications);
+	outUser << allusers->username << "," << allusers->password << "," << allusers->country << "," << allusers->date_Of_Birth << "," << allusers->timetosignup << "," << '\n';
+	if (allusers->Friend_List.isEmpty())
+		outFriends << "\n";
+	else {
+		Friend_Node* cur;
+		cur = allusers->Friend_List.getList();
+		while (cur)
+		{
+			outFriends << cur->name << ",";
+			cur = cur->next;
+		}
+		outFriends << "\n";
+	}
+	//Saving Messages
+	if (allusers->msgStk.isEmpty())
+		outMsg << "\n";
+	else {
+		//Stores in the format "sender Message,"
+		MessageStack temp;
+		temp.copyStack(allusers->msgStk);
+		string name;
+		while (!temp.isEmpty()) {
+			temp.Top(name);
+			outMsg << name << ' ' << temp.pop(name) << ",";
+		}
+		outMsg << "\n";
+	}
+	//Saving the notifications
+	if (allusers->notification.empty())
+		outNotifications << "\n";
+	else {
+		Notification temp;
+		temp.copyQueue(allusers->notification);
+		while (!temp.empty()) {
+			outNotifications << temp.Front();
+			temp.Dequeue();
+		}
+		outNotifications << '\n';
+	}
+
+	//Saving the Out Post
+	if (allusers->posts.empty())
+		outPost << "\n";
+	else {
+		string str = "";
+		PostStack temp;
+		temp.copyStack(allusers->posts);
+		while (!temp.empty()) {
+			outPost << temp.top() << ",";
+		}
+		outPost << "\n";
+	}
+	
+	saveAVL(allusers->right, outUser, outFriends, outMsg, outPost, outNotifications);
+}
+
+//Retrieves from file
+void retrieveFromFile(User* allusers, ifstream& in) {
+
+}
+
+void saveToFile(AllUsers &OBJ)
+{
+	User* allusers = OBJ.getAllUsers();
+	if (!allusers)
+		return;
+	ofstream outUser, outFriends, outMsg, outPost, outNotifications;
+	outUser.open("Users.txt");
+	outFriends.open("Friends.txt");
+	outMsg.open("Messages.txt");
+	outPost.open("Posts.txt");
+	outNotifications.open("Notifications.txt");
+	saveAVL(allusers, outUser, outFriends, outMsg, outPost, outNotifications);
+	outUser.close();
+	outFriends.close();
+	outMsg.close();
+	outPost.close();
 }
 
 void MainMenu() {
@@ -92,6 +181,12 @@ void UserProfile(Login login)
 	cout << "\n\n\n\t\t ================================================" << endl;
 }
 
+void exit_Menu(AllUsers OBJ)
+{
+	saveToFile(OBJ);
+	exit(0);
+}
+
 int main() {
 	// Variables
 	Login login;
@@ -123,7 +218,7 @@ int main() {
 				char ch = _getch();
 			}
 			else if (choice == 3) {
-				exit(0);
+				exit_Menu(alluser);
 			}
 		}
 		bool logout = false;

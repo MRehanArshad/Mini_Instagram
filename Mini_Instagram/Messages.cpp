@@ -54,3 +54,11 @@ bool MessageStack::display() {
 	}
 	return true;
 }
+
+void MessageStack::copyStack(MessageStack obj) {
+	while (!obj.isEmpty()){
+		string name;
+		obj.Top(name);
+		this->push(name, obj.pop(name));
+	}
+}

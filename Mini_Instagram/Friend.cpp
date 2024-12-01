@@ -136,3 +136,13 @@ void Friend::displayBlockFriends() {
 	}
 	std::cout << "\n\n\t\t ================================================" << std::endl;
 }
+
+bool Friend::isEmpty()
+{
+	return this->matrix;
+}
+
+Friend_Node* Friend::getList()
+{
+	return matrix;
+}

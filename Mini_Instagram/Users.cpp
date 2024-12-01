@@ -423,3 +423,8 @@ void AllUsers::unBlockFriend(Login login, std::string username) {
 	SearchUser(root, login.getUsername(), target);
 	target->Friend_List.updateFriend(username, username, "Friend");
 }
+
+User* AllUsers::getAllUsers()
+{
+	return root;
+}
