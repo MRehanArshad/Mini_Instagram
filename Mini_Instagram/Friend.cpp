@@ -83,3 +83,8 @@ bool Friend::updateFriend(std::string key, std::string name, std::string status)
 		}
 	}
 }
+
+bool Friend::isEmpty()
+{
+	return matrix;
+}

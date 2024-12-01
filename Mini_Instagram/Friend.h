@@ -27,4 +27,6 @@ public:
 	bool searchFriend(std::string name);
 
 	bool updateFriend(std::string, std::string, std::string);
+
+	bool isEmpty();
 };

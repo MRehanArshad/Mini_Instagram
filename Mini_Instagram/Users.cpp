@@ -31,6 +31,12 @@ bool User::blockFriend(std::string key) {
 	return Friend_List.updateFriend(key, key, "Blocked");
 }
 
+bool User::isFriend(std::string name) {
+	if(!Friend_List.isEmpty())
+		return Friend_List.searchFriend(name);
+	return false;
+}
+
 bool User::viewMessages() {
 	msgStk.display();
 	return true;
@@ -235,6 +241,7 @@ void AllUsers::display() {
 	preOrder(root);
 }
 
+//Searches the name and sets that node in target
 bool SearchUser(User* root, std::string name, User*& target) {
 	if (root == nullptr) return false;
 	if (name < root->username) {
@@ -343,7 +350,7 @@ void AllUsers::displayPost(Login login) {
 	std::cout << "\n\n\t\t ================================================" << std::endl;
 }
 
-bool AllUsers::addMsg(std::string name, std::string msg) {
+bool AllUsers::addMessage(std::string name, std::string msg) {
 	User* temp = new User();
 	temp->username = name;
 	if (SearchUser(root, name, temp)) {
@@ -351,6 +358,4 @@ bool AllUsers::addMsg(std::string name, std::string msg) {
 		return 1;
 	}
 	return 0;
-}
-	std::cout << "\n\n\t\t ================================================" << std::endl;
 }
