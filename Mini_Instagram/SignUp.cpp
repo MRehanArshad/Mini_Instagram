@@ -51,6 +51,37 @@ string SignUp::getCountry() {
 	return Country;
 }
 
+bool validateDate(string str) {
+	if (str[2] != '/' || str[5] != '/' || str.size() > 10) {
+		cout << "Wrong Format date entered\n";
+		return 0;
+	}
+	string check = str.substr(6, 4);
+	if (stoi(check) > 2022) {
+		cout << "Invalid year entered!\n";
+		return 0;
+	}
+	check = str.substr(3, 2);
+	if (stoi(check) > 12) {
+		cout << "Invalid month entered!\n";
+		return 0;
+	}
+	check = str.substr(0, 2);
+	if (stoi(check) > 30) {
+		cout << "Invalid day entered!\n";
+		return 0;
+	}
+}
+
+bool validateCountry(string country) {
+	for (char c : country) {
+		if (isalpha(c)) {
+			cout << "Country name can't have Numbers or digits\n";
+			return 0;
+		}
+	}
+}
+
 // For Taking Details of Users
 void SignUp::SignUpPage() {
 	system("cls");
@@ -60,10 +91,20 @@ void SignUp::SignUpPage() {
 	getline(cin, Username);
 	cout << "\n\t\t\tEnter the Password : ";
 	getline(cin, Password);
-	cout << "\n\t\t\tEnter the Date of Birth : ";
+	while (Password.size() < 7) {
+		cout << "Password can't be shorter than 6 characters : ";
+		getline(cin, Password);
+	}
+	cout << "\n\t\t\tEnter the Date of Birth (DD/MM/YYYY) : ";
 	getline(cin, DateOfBirth);
+	while (!validateDate(DateOfBirth)) {
+		getline(cin, DateOfBirth);
+	}
 	cout << "\n\t\t\tEnter the Country : ";
 	getline(cin, Country);
+	while (!validateCountry(Country)) {
+		getline(cin, Country);
+	}
 	cout << "\n\n\n\t\t ================================================" << endl;
 	timetoSignUp = "";
 	time_t now = time(nullptr);
