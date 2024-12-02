@@ -13,6 +13,7 @@
 #include<fstream>
 #include"Friend.h"
 #include "Messages.h"
+#include"HashTable.h"
 
 using namespace std;
 
@@ -106,6 +107,7 @@ int main() {
 	Login login;
 	SignUp signup;
 	AllUsers alluser;
+	HashMap hashmap(30);
 	int choice;
 	string str;
 
@@ -121,12 +123,25 @@ int main() {
 
 			if (choice == 1) {
 				login.LoginDetails();
-				isLogin = alluser.ValidatePassword(login);
+				string password = hashmap.Retrive(login.getUsername());
+				if (password == login.getPassword()) {
+					std::cout << "\n\t\t\tYou have Successfully Login!!" << std::endl;
+					isLogin = true;
+				}
+				else if(password != "") {
+					std::cout << "\n\t\t\tPassword didn't match" << std::endl;
+					isLogin = false;
+				}
+				else {
+					std::cout << "\n\t\t\tThis User does not Exsist in the database." << std::endl;
+					isLogin = false;
+				}
 				Sleep(2000);
 			}
 			else if (choice == 2) {
 				signup.SignUpPage();
 				alluser.Insert(signup);
+				hashmap.Insert(signup.getUsername(), signup.getPassword());
 				cout << "\n\t\t\tNew SignUp at " << signup.getTimetoSignUp() << endl;
 				cout << "\n\t\t\tPress any key to continue....." << endl;
 				char ch = _getch();
