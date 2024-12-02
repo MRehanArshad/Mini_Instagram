@@ -43,9 +43,8 @@ public:
 	void Insert(SignUp signup);
 	void DeleteUser(std::string username);
 	bool ValidatePassword(Login login);
-	//----- TBD ------
-	bool addMessage(std::string name, std::string msg);
-
+	bool addMsg(Login login, std::string name, std::string msg);
+	void viewMessage(Login login);
 	void viewNotification(Login login);
 	void addPost(Login login, std::string str);
 	void deletePost(Login login, std::string str);

@@ -441,14 +441,6 @@ void AllUsers::unBlockFriend(Login login, std::string username) {
 	User* target = nullptr;
 	SearchUser(root, login.getUsername(), target);
 	target->Friend_List.updateFriend(username, username, "Friend");
-bool AllUsers::addMessage(std::string name, std::string msg) {
-	User* temp = new User();
-	temp->username = name;
-	if (SearchUser(root, name, temp)) {
-		temp->msgStk.push(name, msg);
-		return 1;
-	}
-	return 0;
 }
 
 User* AllUsers::getAllUsers()
