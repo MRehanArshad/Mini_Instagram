@@ -75,7 +75,7 @@ bool validateDate(string str) {
 
 bool validateCountry(string country) {
 	for (char c : country) {
-		if (isalpha(c)) {
+		if (!isalpha(c)) {
 			cout << "Country name can't have Numbers or digits\n";
 			return 0;
 		}

@@ -94,7 +94,8 @@ void UserProfile(Login login)
 	cout << "\n\t\t\t2. Messages" << endl;
 	cout << "\n\t\t\t3. Friends" << endl;
 	cout << "\n\t\t\t4. View Notifications" << endl;
-	cout << "\n\t\t\t5. Log Out" << endl;
+	cout << "\n\t\t\t5. View News Feed" << endl;
+	cout << "\n\t\t\t6. Log Out" << endl;
 	cout << "\n\n\n\t\t ================================================" << endl;
 }
 
@@ -248,6 +249,9 @@ int main() {
 				char ch = _getch();
 			}
 			else if (choice == 5) {
+				alluser.showNewsFeed(login.getUsername());
+			}
+			else if (choice == 6) {
 				cout << "\n\n\t\t\tLogout Successfully........" << endl;
 				Sleep(2000);
 				logout = true;

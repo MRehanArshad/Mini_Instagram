@@ -59,4 +59,5 @@ public:
 	void viewBlockFriend(Login login);
 	void unBlockFriend(Login login, std::string);
 	User* getAllUsers();
+	void showNewsFeed(std::string name);
 };

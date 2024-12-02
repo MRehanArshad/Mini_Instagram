@@ -462,3 +462,25 @@ void AllUsers::viewMessage(Login login) {
 	target->msgStk.display();
 	std::cout << "\n\n\t\t ================================================" << std::endl;
 }
+
+void AllUsers::showNewsFeed(std::string name) {
+	User* temp;
+	SearchUser(root, name, temp);
+	if (!temp) {
+		std::cout << "Error!\nNews feed\n";
+	}
+	Friend_Node* cur = temp->Friend_List.getList();
+	if (!cur)
+		std::cout << "No News Feed Make some Friends First :-)" << std::endl;
+	while (cur)
+	{
+		User* find;
+		SearchUser(root, cur->name, find);
+		if (find) {
+			std::cout << " --------- " << find->username << " ---------\n";
+			std::cout << find->posts.top() << std::endl;
+		}
+		std::cout << "\n";
+		cur = cur->next;
+	}
+}
