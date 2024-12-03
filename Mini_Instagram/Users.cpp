@@ -470,13 +470,15 @@ void AllUsers::showNewsFeed(std::string name) {
 		std::cout << "Error!\nNews feed\n";
 	}
 	Friend_Node* cur = temp->Friend_List.getList();
-	if (!cur)
+	if (!cur) {
 		std::cout << "No News Feed Make some Friends First :-)" << std::endl;
+		return;
+	}
 	while (cur)
 	{
 		User* find;
 		SearchUser(root, cur->name, find);
-		if (find) {
+		if (find && !find->posts.empty()) {
 			std::cout << " --------- " << find->username << " ---------\n";
 			std::cout << find->posts.top() << std::endl;
 		}
