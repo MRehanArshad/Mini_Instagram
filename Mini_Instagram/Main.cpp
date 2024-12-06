@@ -213,7 +213,7 @@ int main() {
 				}
 				else if (choice == 2) {
 					alluser.viewRequest(login);
-					cout << "\n\t\t\tGive Username to send friend request : ";
+					cout << "\n\t\t\tGive Username to accept friend request : ";
 					getline(cin, str);
 					alluser.AcceptRequest(login, str);
 					cout << "\n\n\t\t\tPress any key continue...." << endl;
@@ -250,6 +250,8 @@ int main() {
 			}
 			else if (choice == 5) {
 				alluser.showNewsFeed(login.getUsername());
+				cout << "\n\n\t\t\tPress any key continue...." << endl;
+				char ch = _getch();
 			}
 			else if (choice == 6) {
 				cout << "\n\n\t\t\tLogout Successfully........" << endl;

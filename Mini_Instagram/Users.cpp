@@ -134,6 +134,9 @@ User* AllUsers::InsertUser(User* root, SignUp signup) {
 	else if (signup.getUsername() > root->username) {
 		root->right = InsertUser(root->right, signup);
 	}
+	else {
+		return root;
+	}
 	root->height = max(getHeight(root->left), getHeight(root->right)) + 1;
 	int bf = getHeight(root->left) - getHeight(root->right);
 

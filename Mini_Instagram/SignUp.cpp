@@ -91,8 +91,8 @@ void SignUp::SignUpPage() {
 	getline(cin, Username);
 	cout << "\n\t\t\tEnter the Password : ";
 	getline(cin, Password);
-	while (Password.size() < 7) {
-		cout << "Password can't be shorter than 6 characters : ";
+	while (Password.size() < 8) {
+		cout << "Password can't be shorter than 8 characters : ";
 		getline(cin, Password);
 	}
 	cout << "\n\t\t\tEnter the Date of Birth (DD/MM/YYYY) : ";
