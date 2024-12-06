@@ -467,6 +467,7 @@ void AllUsers::viewMessage(Login login) {
 }
 
 void AllUsers::showNewsFeed(std::string name) {
+	system("cls");
 	User* temp;
 	SearchUser(root, name, temp);
 	if (!temp) {
