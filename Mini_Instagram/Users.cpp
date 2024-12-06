@@ -470,11 +470,13 @@ void AllUsers::showNewsFeed(std::string name) {
 	User* temp;
 	SearchUser(root, name, temp);
 	if (!temp) {
-		std::cout << "Error!\nNews feed\n";
+		std::cout << "\n\t\t\tError!\n\t\t\tNews feed\n";
 	}
 	Friend_Node* cur = temp->Friend_List.getList();
 	if (!cur) {
-		std::cout << "No News Feed Make some Friends First :-)" << std::endl;
+		std::cout << "\n\t\t ================================================" << std::endl;
+		std::cout << "\n\t\t\tNo News Feed Make some Friends First :-)" << std::endl;
+		std::cout << "\n\t\t ================================================" << std::endl;
 		return;
 	}
 	while (cur)
@@ -482,8 +484,8 @@ void AllUsers::showNewsFeed(std::string name) {
 		User* find;
 		SearchUser(root, cur->name, find);
 		if (find && !find->posts.empty()) {
-			std::cout << " --------- " << find->username << " ---------\n";
-			std::cout << find->posts.top() << std::endl;
+			std::cout << "\n\t\t\t --------- " << find->username << " ---------\n";
+			std::cout << "\n\t\t\t"<<find->posts.top() << std::endl;
 		}
 		std::cout << "\n";
 		cur = cur->next;
